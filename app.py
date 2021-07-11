@@ -1,29 +1,47 @@
-from flask import Flask, render_template, url_for,  request, redirect, flash
+from flask import Flask, render_template, url_for,  request, redirect, flash,session
 from db import DB
 from sms import SMS
 from methods import *
 
 app = Flask(__name__)
-app.secret_key = b'E_5N#yO2LC"FH4QS8zEffMhgf46@@]'
+app.secret_key = b'_5#y2L"F4Q8zffhgf46@@]'
 
-gideon = "0208162005" #0208162005
-ekow = "0550726756" #0550726756
-general_family = "0208162005" #0546353625
-augusta = "0244879849"
+gideon = "0546353625"
+ekow = "0203558351"
+augusta = "0000000000"
+general_family = "0554317909"
 
 TABLE_NAME = "contributor"
 
 
 
-@app.route("/")
+@app.route("/login",  methods = ["GET", "POST"])
+def login():
+    
+    db = DB()
+    if request.method == "POST":
+        name = request.form["name"]
+        password = request.form["password"]
+        status = db.authentication("admin", "name", name, "password", password)
+        
+        if status == True:
+            #set session and get admin name
+            session['admin_name'] = name
+            return redirect(url_for("index"))
+
+    return render_template("appreciation.html")
+
+
+
+
+@app.route("/", methods=["POST","GET"])
 def index():
-    return render_template("index.html")
+    
+    admin_name = session.get("admin_name")
 
+    if not session.get("admin_name"):
+        return redirect(url_for("login"))
 
- 
-
-@app.route("/donations", methods=["POST","GET"])
-def donations():
 
     contributor_name = ""
     contributor_contact =""
@@ -40,28 +58,29 @@ def donations():
         contributor_name = name
         contributor_contact = contact
 
-        db.insert(TABLE_NAME, "name", "contact", "amount", "beneficiary", name, contact, amount, beneficiary)
+        db.insert(TABLE_NAME, "name", "contact", "amount", "beneficiary","admin_name", name, contact, amount, beneficiary, admin_name)
         
         if beneficiary == "Gideon":
             beneficiary_sms(contributor_name, amount, contributor_contact, beneficiary, gideon)
             
         elif beneficiary == "Ekow":
             beneficiary_sms(contributor_name, amount, contributor_contact, beneficiary, ekow)
+
+        elif beneficiary == "Augusta":
+            beneficiary_sms(contributor_name, amount, contributor_contact, beneficiary, augusta)
         
         elif beneficiary == "General Family":
             beneficiary_sms(contributor_name, amount, contributor_contact, beneficiary, general_family)
-        elif beneficiary == "Augusta":
-            beneficiary_sms(contributor_name, amount, contributor_contact, beneficiary,augusta)
         
         flash("Successful")
-        return redirect(url_for("donations"))
+        return redirect(url_for("index"))
 
-    return render_template("donations.html")
-
-
+    return render_template("index.html",admin_name = admin_name)
 
 
-@app.route("/donations/admin", methods = ["GET", "POST"])
+
+
+@app.route("/admin", methods = ["GET", "POST"])
 def admin():
     db = DB()
     contributors = db.select_all(TABLE_NAME)
