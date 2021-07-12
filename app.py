@@ -72,7 +72,7 @@ def index():
         elif beneficiary == "General Family":
             beneficiary_sms(contributor_name, amount, contributor_contact, beneficiary, general_family)
         
-        flash("{:,.2f}GHS from {} processed for {}".format(amount,contributor_name,beneficiary))
+        flash("{} GHS from {} processed for {}".format(amount,contributor_name,beneficiary))
         return redirect(url_for("index"))
 
     return render_template("index.html",admin_name = admin_name)
