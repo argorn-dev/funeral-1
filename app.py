@@ -6,9 +6,9 @@ from methods import *
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8zffhgf46@@]'
 
-gideon = "0546353625"
+gideon = "0208162005"
 ekow = "0203558351"
-augusta = "0000000000"
+augusta = "0546353625"
 general_family = "0554317909"
 
 TABLE_NAME = "contributor"
@@ -72,7 +72,7 @@ def index():
         elif beneficiary == "General Family":
             beneficiary_sms(contributor_name, amount, contributor_contact, beneficiary, general_family)
         
-        flash("Successful")
+        flash("{}'s donation processed")
         return redirect(url_for("index"))
 
     return render_template("index.html",admin_name = admin_name)
