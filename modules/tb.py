@@ -66,6 +66,15 @@ admin = [("admin1", "frnlocO"),
          ("admin2", "frnlocT"),
          ("admin3", "frnlocTH"),
          ("admin4", "frnlocF"),
+         ("admin5", "Suw3k5"),
+         ("admin6", "p6LeqI"),
+         ("admin7", "9Q8rDJ"),
+         ("admin8", "uS878q"),
+         ("admin9", "kFYu83"),
+         ("admin10", "v4iLb6"),
+         ("admin11", "2WYlPz"),
+         ("admin12", "sR5F77"),
+
            ]
 
 sql1 = """ INSERT INTO admin(name,password)VALUES(?,?)"""
