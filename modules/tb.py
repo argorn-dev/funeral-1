@@ -37,11 +37,7 @@ def delete_rows(tb_name):
     print("done")
 
 
-delete_rows("contributor")
-
-
-
-
+#delete_rows("contributor")
 
 
 
@@ -73,8 +69,7 @@ admin = [("admin1", "frnlocO"),
          ("admin9", "kFYu83"),
          ("admin10", "v4iLb6"),
          ("admin11", "2WYlPz"),
-         ("admin12", "sR5F77"),
-
+         ("admin12", "sR5F77")
            ]
 
 sql1 = """ INSERT INTO admin(name,password)VALUES(?,?)"""
