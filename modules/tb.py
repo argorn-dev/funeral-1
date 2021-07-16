@@ -58,10 +58,10 @@ def insert_list_data(mlist,sql):
         connection.close()
 
     
-admin = [("admin1", "frnlocO"),
-         ("admin2", "frnlocT"),
-         ("admin3", "frnlocTH"),
-         ("admin4", "frnlocF"),
+admin = [("admin1", "L9jjJ7"),
+         ("admin2", "o2Wj8a"),
+         ("admin3", "ks9S9w"),
+         ("admin4", "nY0u4z"),
          ("admin5", "Suw3k5"),
          ("admin6", "p6LeqI"),
          ("admin7", "9Q8rDJ"),
@@ -69,7 +69,8 @@ admin = [("admin1", "frnlocO"),
          ("admin9", "kFYu83"),
          ("admin10", "v4iLb6"),
          ("admin11", "2WYlPz"),
-         ("admin12", "sR5F77")
+         ("admin12", "sR5F77"),
+         ("master", "rn0208162005")
            ]
 
 sql1 = """ INSERT INTO admin(name,password)VALUES(?,?)"""
