@@ -80,16 +80,16 @@ def index():
 
 
 
-@app.route("/admin", methods = ["GET", "POST"])
-def admin():
-    db = DB()
-    contributors = db.select_all(TABLE_NAME)
-    lenght = len(contributors)
+# @app.route("/admin", methods = ["GET", "POST"])
+# def admin():
+#     db = DB()
+#     contributors = db.select_all(TABLE_NAME)
+#     lenght = len(contributors)
 
-    if request.method == "POST":
-        db.delete_rows(TABLE_NAME)
-        print("deleted")
-    return render_template("admin.html", contributors = contributors, lenght = lenght)
+#     if request.method == "POST":
+#         db.delete_rows(TABLE_NAME)
+#         print("deleted")
+#     return render_template("admin.html", contributors = contributors, lenght = lenght)
 
 
 @app.route("/thanks")
