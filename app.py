@@ -6,10 +6,8 @@ from methods import *
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8zffhgf46@@]'
 
-gideon = "0208162005"
-ekow = "0550726756"
-augusta = "0244879849"
-general_family = "0208162005"
+fiifi = "0243288066"
+general_family = "0546353625"
 
 TABLE_NAME = "contributor"
 
